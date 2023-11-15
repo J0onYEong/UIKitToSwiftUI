@@ -5,10 +5,13 @@ import ProjectDescriptionHelpers
 
 let basePath = "Targets/UIKitToSwiftUI"
 let bundleId = "io.tuist.ProjectDescriptionHelpers"
+let packagePath = "../Packages"
 
 let project = Project(
         name: "UIKitToSwiftUI",
-        packages: [ ],
+        packages: [
+            .local(path: "\(packagePath)/MapkitToSwiftUI")
+        ],
         targets: [
             Target(name: "UIKitToSwiftUI",
                    platform: .iOS,
@@ -16,7 +19,9 @@ let project = Project(
                    bundleId: bundleId,
                    deploymentTarget: .iOS(targetVersion: "16.0", devices: .iphone),
                    sources: ["\(basePath)/Sources/**"],
-                   dependencies: [ ]
+                   dependencies: [
+                        .package(product: "MapkitToSwiftUI")
+                   ]
                   ),
             Target(
                 name: "UIKitToSwiftUITests",
